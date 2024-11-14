@@ -99,11 +99,13 @@ The implemented approach contains two stages:
 1. First, **object detection models** are trained to identify five intervertebral disc levels (L1/L2 through L5/S1) in _Sagittal T2/STIR_ images for diagnosing SCS and _Sagittal T1_ images for LNFN/RNFN.
     - The annotated x and y coordinates in the metadata serve as labels for these models.
     - For each condition, a pre-trained [**Faster R-CNN model with a ResNet-50-FPN backbone**](https://pytorch.org/vision/main/models/generated/torchvision.models.detection.fasterrcnn_resnet50_fpn_v2.html) [1] model is fine-tuned independently to predict disc levels.
+    - You may find the training process and examples of predicted bounding boxes in notebooks whose names start with [02_train_disc_detection](https://github.com/nshen7/rsna-2024/tree/main/notebooks)
 1. Second, **classification models** are trained to predict the severity level of each condition.
     - Cropped images of intervertebral disc levels are used for SCS, LNFN, and RNFN severity models, while full Axial T2 images are used for LSS/RSS.
     - A pre-trained [**Swin Transformer**](https://pytorch.org/vision/main/models/generated/torchvision.models.swin_v2_t.html) [2] model is fine-tuned for severity prediction task on SCS, LNFN, and RNFN.
     - Due to a small sample size, the model for LSS was fine-tuned from the trained SCS model, which leads to a stronger performance than directly fine-tuning the Swin Transformer on smaller datasets.
     - Due to an even smaller sample size, the model for RSS was fine-tuned from the trained LSS model.
+    - You may find the training process in notebooks whose names start with [04_train_severity_classification](https://github.com/nshen7/rsna-2024/tree/main/notebooks).
 
 ### Train Test Split:
 
