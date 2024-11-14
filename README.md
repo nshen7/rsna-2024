@@ -165,7 +165,7 @@ On the other hand, this approach may lack the ability to leverage common feature
     The dataset provides a large set of unlabeled images apart from the labeled ones. A promising avenue is the use of semi-supervised learning techniques to leverage the available unlabeled data. By incorporating a semi-supervised approach, the model could benefit from both labeled and unlabeled samples, potentially improving its performance on limited annotated data. Methods like pseudo-labeling and self-training could help exploit the unlabeled data, adding robustness and reducing reliance on labeled data alone.
     
 - **Visualization with tools like Grad-CAM:**
-    Integrating visualization techniques such as Grad-CAM may enhance model interpretability and provide insights into the decision-making process. By visualizing class-specific activations, we can gain a deeper understanding of the model's behavior and ensure that it is making decisions based on relevant features. This serves as a useful tool to improve the trustworthiness of the model, especially in a medical domain where model explainability is crucial.
+    Integrating visualization techniques such as Grad-CAM [4] may enhance model interpretability and provide insights into the decision-making process. By visualizing class-specific activations, we can gain a deeper understanding of the model's behavior and ensure that it is making decisions based on relevant features. This serves as a useful tool to improve the trustworthiness of the model, especially in a medical domain where model explainability is crucial.
 
 ## References
 
