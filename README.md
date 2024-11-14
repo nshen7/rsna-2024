@@ -115,14 +115,15 @@ The implemented approach contains two stages:
 ### Training Strategy: 
 
 - For **all models**:
-    - Learning rate and optimization method: A learning rate of 0.0001  and an ADAM optimizer was applied to all object detection models.
-    - Early stopping: the model produced by the epoch that gives highest accuracy or lowest loss in validation inference was selected as the final model.
+    - Learning rate: A learning rate of 0.0001 was applied to all object detection models.
+    - Optimization method: An ADAM optimizer was applied to all object detection models.
+    - Early stopping: the model produced by the epoch that gave the highest accuracy or lowest loss in validation inference was selected as the final model.
 - For **object detection models only**:
-    - Batch size and epochs: A batch size of 10 and total epoch of 3 was used for all object detection models.
-    - Loss: We use the same combinatorial loss as originally proposed in Faster R-CNN, which includes both classification cross entropy loss and a bounding box regression loss.
+    - Batch size and epochs: A batch size of 10 and a total epoch of 3 were used for all object detection models.
+    - Loss: The combinatorial loss originally proposed in Faster R-CNN was used, which combines a classification cross entropy loss and a bounding box regression loss.
 - For **severity classification models only**:
-    - Batch size and epochs: A batch size of 50 and total epoch of 6 was used for all object detection models.
-    - Loss: A weighted cross entropy loss was used to address the imbalanced class distribution and prioritize the model's performance on moderate and severe cases. We applied the same sample weights proposed in the evaluate metric of this Kaggle competition:
+    - Batch size and epochs: A batch size of 50 and a total epoch of 6 were used for all object detection models.
+    - Loss: A weighted cross entropy loss was used to address the imbalanced class distribution and prioritize the model's performance on moderate and severe cases. We applied the same sample weights proposed in the evaluation metric of this Kaggle competition:
         - 1 for normal/mild.
         - 2 for moderate.
         - 4 for severe. 
@@ -130,10 +131,10 @@ The implemented approach contains two stages:
 ## Summary of Results
 
 - Performance of the disc detection models:
-    A detailed performance evaluation on test set for the disc detection models can be found in the notebook [03_test_disc_detection.ipynb](https://github.com/nshen7/rsna-2024/blob/main/notebooks/03_test_disc_detection.ipynb). Results are reported based on average precision and average recall metrics at various Intersection over Union (IoU) thresholds and sizes of detected areas to assess its ability to localize and classify spinal disc anomalies accurately. In a nutshell, all three models performed well on the test set, resulting a precision of around 85\~95% for IoU of 0.5 amd 0.75 and a recall of 80\~85% for IoU of 0.5:0.95. 
+    A detailed performance evaluation on the test set for the disc detection models can be found in the notebook [03_test_disc_detection.ipynb](https://github.com/nshen7/rsna-2024/blob/main/notebooks/03_test_disc_detection.ipynb). Results are reported based on average precision and average recall metrics at various Intersection over Union (IoU) thresholds and sizes of detected areas to assess its ability to localize and classify spinal disc anomalies accurately. In a nutshell, all three models performed well on the test set, resulting in a precision of around 85\~95% for IoU of 0.5 and 0.75 and a recall of 80\~85% for IoU of 0.5:0.95. 
     
 - Overall performance of severity classification:
-    A detailed performance evaluation on test set for the the entire pipeline can be found in the notebook [05_test_severity_classification.ipynb](https://github.com/nshen7/rsna-2024/blob/main/notebooks/05_test_severity_classification.ipynb). Results are reported based on accuracy, precision, recall and F1 scores. Our pipeline resulted an overall loss of 0.5847 and a classification accuracy of 80.90% on the test set across all severity levels, and similar performance was observed across all spinal conditions. In particular, the pipeline performed much better in identifying the Normal/Mild than the Moderate and Severe, which might be due to the limited sample size of the Moderate and Severe classes. See below for the overall accuracy metrics for the three conditions individually:
+    A detailed performance evaluation on the test set for the entire pipeline can be found in the notebook [05_test_severity_classification.ipynb](https://github.com/nshen7/rsna-2024/blob/main/notebooks/05_test_severity_classification.ipynb). Results are reported based on accuracy, precision, recall, and F1 scores. Our pipeline resulted in an overall loss of 0.5847 and a classification accuracy of 80.90% on the test set across all severity levels, and similar performance was observed across all spinal conditions. In particular, the pipeline performed much better in identifying the Normal/Mild than the Moderate and Severe, which might be due to the limited sample size of the Moderate and Severe classes. See below for the overall accuracy metrics for the three conditions individually:
     - Class 'Normal/Mild': Precision: 0.9174, Recall: 0.8955, F1-score: 0.9063
     - Class 'Moderate':    Precision: 0.4511, Recall: 0.4938, F1-score: 0.4715
     - Class 'Severe':      Precision: 0.4869, Recall: 0.5152, F1-score: 0.5007
